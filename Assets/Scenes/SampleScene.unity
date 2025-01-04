@@ -543,6 +543,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee746cd11cc84344dbf10980a0142849, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _button: {fileID: 2050072361}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -841,19 +842,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 835570845}
-        m_TargetAssemblyTypeName: Timer, Assembly-CSharp
-        m_MethodName: HandleClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!222 &2050072362
 CanvasRenderer:
   m_ObjectHideFlags: 0

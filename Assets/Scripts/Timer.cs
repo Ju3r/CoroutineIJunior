@@ -1,10 +1,13 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
     public event Action TimeChanged;
+
+    [SerializeField] private Button _button;
 
     private float _delay = 0.5f;
     private float _timeToAdd = 1f;
@@ -16,6 +19,17 @@ public class Timer : MonoBehaviour
     private void Start()
     {
         _wait = new WaitForSecondsRealtime(_delay);
+        _button = GetComponent<Button>();
+    }
+
+    private void OnEnable()
+    {
+        _button?.onClick.AddListener(HandleClick);
+    }
+
+    private void OnDisable()
+    {
+        _button?.onClick.RemoveListener(HandleClick);
     }
 
     public void HandleClick()
