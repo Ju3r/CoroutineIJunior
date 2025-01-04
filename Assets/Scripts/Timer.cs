@@ -13,16 +13,6 @@ public class Timer : MonoBehaviour
 
     [HideInInspector] public float CurrentTime { get; private set; } = 0f;
 
-    private IEnumerator IncreaseTime()
-    {
-        while (_isTimerGoing)
-        {
-            CurrentTime += _timeToAdd;
-            TimeChanged?.Invoke();
-            yield return _wait;
-        }
-    }
-
     private void Start()
     {
         _wait = new WaitForSecondsRealtime(_delay);
@@ -30,20 +20,36 @@ public class Timer : MonoBehaviour
 
     public void HandleClick()
     {
-        ChangeTimerStatement();
-
         if (_isTimerGoing)
         {
-            StartCoroutine(IncreaseTime());
+            ChangeTimerStatementToStop();
+            StopCoroutine(IncreaseTime());
         }
         else
         {
-            StopCoroutine(IncreaseTime());
+            ChangeTimerStatementToStart();
+            StartCoroutine(IncreaseTime());
         }
     }
 
-    private void ChangeTimerStatement()
+    private IEnumerator IncreaseTime()
     {
-        _isTimerGoing = !_isTimerGoing;
+        while (_isTimerGoing)
+        {
+            CurrentTime += _timeToAdd;
+            TimeChanged?.Invoke();
+
+            yield return _wait;
+        }
+    }
+
+    private void ChangeTimerStatementToStop()
+    {
+        _isTimerGoing = false;
+    }
+
+    private void ChangeTimerStatementToStart()
+    {
+        _isTimerGoing = true;
     }
 }
